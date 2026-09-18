@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tu mensaje de hoy</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px;
+      background: #f5efe3;
+      font-family: Arial, sans-serif;
+      color: #37402c;
+      text-align: center;
+    }
+
+    .tarjeta {
+      max-width: 500px;
+      width: 100%;
+      background: #fffaf1;
+      padding: 45px 30px;
+      border-radius: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .sol {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 25px;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    #mensaje {
+      font-size: 24px;
+      line-height: 1.5;
+      font-weight: bold;
+      margin: 25px 0 35px;
+    }
+
+    .final {
+      font-size: 16px;
+      opacity: 0.75;
+    }
+
+    .marca {
+      margin-top: 35px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      opacity: 0.55;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tarjeta">
+
+    <div class="sol">☀️</div>
+
+    <h1>TU MENSAJE DE HOY</h1>
+
+    <div id="mensaje"></div>
+
+    <div class="final">
+      Que tengas un bonito día
+    </div>
+
+    <div class="marca">
+      personaliza2s
+    </div>
+
+  </div>
+
+  <script>
+
+    const mensajes = [
+      "No necesitas tenerlo todo resuelto. Solo dar el siguiente paso.",
+      "Hoy también es un buen día para empezar de nuevo.",
+      "Haz algo hoy que tu yo de mañana agradezca.",
+      "No todo tiene que ser perfecto para ser bonito.",
+      "Ve a tu ritmo. Sigue siendo avanzar.",
+      "Disfruta de las pequeñas cosas. Ahí suele esconderse lo bueno.",
+      "No compares tu camino con el de nadie.",
+      "A veces descansar también forma parte del plan.",
+      "Confía un poquito más en ti.",
+      "Que algo tarde no significa que no vaya a llegar.",
+      "Hoy preocúpate menos por hacerlo perfecto y más por disfrutarlo.",
+      "Las cosas buenas también empiezan con pasos pequeños.",
+      "No olvides celebrar todo lo que ya has conseguido.",
+      "Quizás hoy no necesites hacer más, sino disfrutar más.",
+      "Un mal momento no convierte el día entero en un mal día.",
+      "Haz espacio para aquello que te hace sentir bien.",
+      "Lo que hoy parece pequeño puede convertirse en algo grande.",
+      "No necesitas permiso para cambiar de dirección.",
+      "Sé paciente contigo. También estás aprendiendo.",
+      "Hoy puede sorprenderte algo bonito.",
+      "Respira. No todo necesita una solución inmediata.",
+      "Rodéate de cosas que te recuerden disfrutar.",
+      "No dejes que una preocupación ocupe todo el espacio del día.",
+      "Lo sencillo también puede hacerte muy feliz.",
+      "Hay días para avanzar y días para coger fuerzas.",
+      "Haz más de eso que hace que pierdas la noción del tiempo.",
+      "Tu tranquilidad también es una prioridad.",
+      "A veces el mejor plan es no tener ningún plan.",
+      "No esperes una ocasión especial para disfrutar de algo.",
+      "Que hoy te encuentre haciendo algo que te haga sonreír.",
+      "No puedes controlar todo, pero sí cómo quieres vivir este momento.",
+      "Date crédito por todas las veces que seguiste adelante.",
+      "No hace falta correr cuando sabes hacia dónde quieres ir.",
+      "Haz sitio para nuevas historias.",
+      "Un poquito de ilusión puede cambiar completamente un día.",
+      "Hoy habla contigo como hablarías con alguien que quieres.",
+      "Las mejores cosas muchas veces empiezan sin saber exactamente cómo terminarán.",
+      "No subestimes el poder de un día tranquilo.",
+      "Si hoy puedes elegir, elige aquello que te dé paz.",
+      "No guardes todas las cosas bonitas para después.",
+      "También puedes cambiar de opinión. Eso se llama aprender.",
+      "Hoy intenta estar donde están tus pies.",
+      "Hay momentos que solo necesitan tiempo.",
+      "No todo lo productivo tiene que producir algo.",
+      "Busca hoy al menos una razón para reírte.",
+      "Una pequeña decisión puede abrir un camino completamente nuevo.",
+      "Agradece lo que tienes sin dejar de soñar con lo que quieres.",
+      "No conviertas un pequeño problema en el protagonista del día.",
+      "Hoy haz las cosas con un poquito menos de prisa.",
+      "Siempre hay algo bueno que todavía no ha sucedido.",
+      "Si necesitas descansar, descansa. El mundo puede esperar cinco minutos.",
+      "A veces la mejor respuesta es darle tiempo.",
+      "Haz que tu casa tenga recuerdos, no solamente cosas.",
+      "No pierdas un buen día pensando demasiado en mañana.",
+      "La vida también ocurre mientras haces planes.",
+      "Hoy tienes otra oportunidad para hacerlo diferente.",
+      "No necesitas una gran razón para estar de buen humor.",
+      "Lo que no salió como esperabas quizá te esté llevando hacia otra cosa.",
+      "Guarda energía para las cosas que realmente importan.",
+      "No te tomes absolutamente todo tan en serio.",
+      "Haz hoy una cosa simplemente porque te apetece.",
+      "Los días normales también terminan convirtiéndose en recuerdos.",
+      "A veces hay que cerrar una puerta para descubrir que había una ventana.",
+      "Disfruta el proceso. Llegar no es la única parte importante.",
+      "No necesitas hacer ruido para estar avanzando.",
+      "Una conversación bonita puede arreglar un día entero.",
+      "Hoy deja un poquito de espacio para la improvisación.",
+      "No olvides que también mereces disfrutar de lo que estás construyendo.",
+      "Haz las paces con no poder controlarlo todo.",
+      "Quizás hoy sea un buen día para llamar a alguien que echas de menos.",
+      "No esperes a tenerlo todo para disfrutar de lo que ya tienes.",
+      "Algunos días la victoria simplemente consiste en intentarlo.",
+      "Si algo te hace feliz y no hace daño a nadie, disfrútalo.",
+      "No todas las respuestas aparecen cuando las buscas.",
+      "Hoy intenta coleccionar momentos, no preocupaciones.",
+      "El tiempo que disfrutas nunca está perdido.",
+      "No tienes que demostrarle nada a todo el mundo.",
+      "Quizás lo que necesitas hoy sea más sencillo de lo que imaginas.",
+      "Una pausa también puede llevarte hacia adelante.",
+      "No olvides mirar cuánto has avanzado.",
+      "Hoy haz espacio para una buena noticia.",
+      "La felicidad también vive en las cosas pequeñas y repetidas.",
+      "No permitas que cinco minutos malos se queden con las otras veintitrés horas.",
+      "Haz algo bonito sin necesidad de publicarlo.",
+      "Algunos planes salen mejor cuando no estaban planeados.",
+      "Si hoy todo se complica, empieza por hacerte un café.",
+      "Respira profundamente. Luego ya vemos qué hacemos con el resto.",
+      "No tienes que conquistar el mundo antes de cenar.",
+      "Si no sabes qué hacer, empieza por algo pequeño.",
+      "Hoy sonríe aunque sea porque encontraste algo rico en la nevera.",
+      "Hay problemas que parecen menos graves después de comer.",
+      "No dejes para mañana la siesta que puedas echarte hoy.",
+      "La vida es demasiado corta para guardar la vajilla bonita.",
+      "Si el plan falla, siempre queda improvisar.",
+      "Hoy puede ser un gran día. Y si no, mañana tenemos otro.",
+      "Haz lo que puedas, con lo que tengas, desde donde estés.",
+      "Que tus ganas sean más grandes que tus excusas.",
+      "No necesitas un día perfecto para tener un momento perfecto.",
+      "Tómate la vida en serio, pero no tanto.",
+      "Hoy recuerda: tú también eres una de tus prioridades."
+    ];
+
+    const hoy = new Date();
+
+    const inicio = new Date(
+      hoy.getFullYear(),
+      0,
+      0
+    );
+
+    const diferencia = hoy - inicio;
+
+    const diaDelAno = Math.floor(
+      diferencia / (1000 * 60 * 60 * 24)
+    );
+
+    const numeroMensaje =
+      diaDelAno % mensajes.length;
+
+    document.getElementById("mensaje").textContent =
+      mensajes[numeroMensaje];
+
+  </script>
+
+</body>
+</html>
